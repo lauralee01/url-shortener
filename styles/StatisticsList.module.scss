@@ -1,0 +1,89 @@
+$color-primary-light: hsl(180, 66%, 49%);
+$color-primary-dark: hsl(257, 27%, 26%);
+
+$color-secondary: hsl(0, 87%, 67%);
+
+$color-neutral-light: hsl(0, 0%, 75%);
+$color-neutral-lighter: hsl(257, 7%, 63%);
+
+$color-neutral-dark: hsl(255, 11%, 22%);
+$color-neutral-darker: hsl(260, 8%, 14%);
+
+$color-white: #ffffff;
+
+$font-size-normal: 18px;
+$font-size-small: 14px;
+$font-size-medium: 24px;
+
+.image {
+    border-radius: 50%;
+    padding: 1rem;
+    background: $color-primary-dark;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -2rem;
+    left: 2rem;
+}
+
+.card {
+    height: 230px;
+    box-shadow: 0px 3px 7px rgb(19 50 82 / 7%);
+    h5 {
+        font-weight: bold;
+    }
+    p {
+        font-size: $font-size-small;
+        color: $color-neutral-light;
+        line-height: 25px;
+    }
+}
+
+#BrandRecognition:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    height: 5px;
+    background: $color-primary-light;
+    width: 100px;
+    left: 100%;
+    top: 60%;
+}
+#DetailedRecords {
+    margin-top: 3rem;
+}
+#DetailedRecords:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    height: 5px;
+    background: $color-primary-light;
+    width: 100px;
+    left: 100%;
+    top: 43%;
+}
+#FullyCustomizable {
+    margin-top: 6rem;
+}
+@media (max-width: 992px) {
+  
+}
+
+@media (max-width: 768px) {
+    .card {
+        height: 280px;
+    }
+}
+
+@media (max-width: 580px) {
+    #BrandRecognition:after {
+        display: none;
+    }
+    #DetailedRecords:after {
+        display: none;
+    }
+   
+}

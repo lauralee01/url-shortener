@@ -1,0 +1,105 @@
+$color-primary-light: hsl(180, 66%, 49%);
+$color-primary-dark: hsl(257, 27%, 26%);
+
+$color-secondary: hsl(0, 87%, 67%);
+
+$color-neutral-light: hsl(0, 0%, 75%);
+$color-neutral-lighter: hsl(257, 7%, 63%);
+
+$color-neutral-dark: hsl(255, 11%, 22%);
+$color-neutral-darker: hsl(260, 8%, 14%);
+
+$color-white: #ffffff;
+
+$font-size-normal: 18px;
+$font-size-small: 15px;
+$font-size-medium: 24px;
+$font-size-large: 32px;
+
+.container {
+    padding: 1.5rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: $font-size-normal;
+    background-color: #ffffff;
+
+    ul li a{
+        margin: 5px 15px;
+        text-decoration: none;
+    }
+}
+.brand {
+    a {
+        color: $color-primary-dark;
+        font-size: $font-size-large;
+        font-weight: bold;
+    }
+}
+.links {
+    a {
+        color: $color-neutral-lighter;
+        font-weight: 500;
+        font-size: $font-size-small;
+    }
+    a:hover {
+        color: $color-neutral-darker;
+    }
+}
+.signup {
+    a {
+        color: $color-white;
+        background: $color-primary-light;
+        font-weight: 300;
+        font-size: $font-size-small;
+        padding: 0.5rem 1.5rem;
+        border-radius: 25px;
+    }
+}
+.media {
+    display: none;
+}
+
+@media (max-width: 992px) {
+  
+}
+
+@media (max-width: 768px) {
+    .container{
+        padding: 1rem 0.5rem;
+    }
+    .links {
+        display: none;
+    }
+    .signup {
+        display: none;
+    }
+    .cover {
+        justify-content: space-between;
+        width: 100%;
+    }
+    .media {
+        display: block;
+    }
+
+}
+
+@media (max-width: 580px) {
+    .container{
+        padding: 1rem 0.5rem;
+    }
+    .links {
+        display: none;
+    }
+    .signup {
+        display: none;
+    }
+    .cover {
+        justify-content: space-between;
+        width: 100%;
+    }
+    .media {
+        display: block;
+    }
+}

@@ -1,0 +1,52 @@
+$color-primary-light: hsl(180, 66%, 49%);
+$color-primary-dark: hsl(257, 27%, 26%);
+
+$color-secondary: hsl(0, 87%, 67%);
+
+$color-neutral-light: hsl(0, 0%, 75%);
+$color-neutral-lighter: hsl(257, 7%, 63%);
+
+$color-neutral-dark: hsl(255, 11%, 22%);
+$color-neutral-darker: hsl(260, 8%, 14%);
+
+$color-white: #ffffff;
+
+$font-size-normal: 18px;
+$font-size-small: 14px;
+$font-size-medium: 24px;
+
+.container {
+    padding:0 6rem;
+    margin-top: 5rem;
+}
+.header {
+    text-align: center;
+
+    h1 {
+        font-weight: bold;
+    }
+    p {
+        color: $color-neutral-light;
+        font-size: $font-size-normal;
+        width: 45%;
+        margin-bottom: 4rem;
+    }
+}
+
+@media (max-width: 992px) {
+  
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding:0 1rem;
+       }
+
+}
+
+@media (max-width: 580px) {
+   .container {
+    padding:0 1rem;
+   }
+   
+}

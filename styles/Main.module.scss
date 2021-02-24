@@ -1,0 +1,17 @@
+$color-primary-dark: hsl(257, 27%, 26%);
+
+$color-secondary: hsl(0, 87%, 67%);
+
+$color-neutral-light: hsl(0, 0%, 75%);
+$color-neutral-lighter: hsl(257, 7%, 63%);
+
+$color-neutral-dark: hsl(255, 11%, 22%);
+$color-neutral-darker: hsl(260, 8%, 14%);
+
+.container {
+    padding-top: 3rem;
+}
+.wrapper {
+    background: #f5f6fa;
+    margin: 0 -1rem;
+}

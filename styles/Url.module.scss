@@ -1,0 +1,55 @@
+$color-primary-light: hsl(180, 66%, 49%);
+$font-size-normal: 18px;
+
+.container {
+    margin: 2rem 6rem 0 0;
+}
+.wrapper {
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    box-shadow: 0px 3px 7px rgba(19, 50, 82, 0.07);
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+
+    p{
+        font-size: $font-size-normal;
+    }
+}
+.shortLink {
+    color: $color-primary-light;
+}
+.block {
+    width: 25%;
+}
+
+@media (max-width: 992px) {
+  
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 2rem 0 0 0;
+       }
+       
+       .block {
+        width: 100%;
+        }
+        .wrapper {
+            display: block;
+        }
+
+}
+
+@media (max-width: 580px) {
+   .container {
+    margin: 2rem 0 0 0;
+   }
+   
+   .block {
+    width: 110%;
+    }
+    .wrapper {
+        display: block;
+    }
+}
