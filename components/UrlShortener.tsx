@@ -91,7 +91,7 @@ class UrlShortener extends Component {
             <div className={urlStyles.wrapper}>
         <form onSubmit={this.registerUser} className={urlStyles.form}>
             <div className="row">
-                <div className="col-md-8 ">
+                <div className={"col-md-8 " + urlStyles.colUrl}>
                   <input 
                       id="name" 
                       name="name" 
