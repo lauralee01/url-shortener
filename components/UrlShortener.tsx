@@ -9,30 +9,47 @@ class UrlShortener extends Component {
     state = {
         urls: [],
         noLink: false,
-        dualNames: false
+        dualNames: false,
+        submittingLink: false,
+        invalidLink: false
     }
 
     registerUser = async (event) => {
         event.preventDefault()
 
-        if(event.target.name.value === '') {
+        if(event.target.name.value === ''){
             this.setState({
                 noLink: true
             })
         }
+        else if(!this.validURL(event.target.name.value)){
+            this.setState({
+                invalidLink: true
+            }) 
+        }
         else {
             this.setState({
-                noLink: false
+                noLink: false,
+                invalidLink: false
             })
-            const newUrl = this.state.urls.some(url => url.originalLink === event.target.name.value)
+            const newUrl = this.state.urls.some(url => url.originalUrl === event.target.name.value)
        
             if(!newUrl) {
+                this.setState({
+                    submittingLink: true
+                })
                 const result = await axios.post(`https://api.shrtco.de/v2/shorten?url=${event.target.name.value}`);
         
                 const data = result.data.result;
-        
-                this.saveUserLinks(data);
-        
+                this.setState({
+                    urls: [...this.state.urls, {
+                        originalUrl: data.original_link,
+                        shortenedUrl: data.short_link
+                    }]
+                })
+                this.setState({
+                    submittingLink: false
+                })
                 event.target.name.value = '';
             }
             else this.setState({
@@ -40,23 +57,32 @@ class UrlShortener extends Component {
             })
             
         }
-        
-      
     }
+    validURL(str) {
+        console.log("invalid", str)
+        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+          '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+          '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+          '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+        return !!pattern.test(str);
+      }
 
-    saveUserLinks = async (data) => {
-        const save = await axios.post('/api/entry', { originalLink: data.original_link, shortenedLink:data.short_link  });
-        this.setState({
-            urls: [...this.state.urls, JSON.parse(save.config.data)]
-        })
-    }
-
-    async componentDidMount() {
-        const urls = await axios.get('/api/entries');
+    componentDidUpdate() {
+        localStorage.setItem('urls', JSON.stringify(this.state.urls))  
+      }
+    
+    componentDidMount() {
+        const data = localStorage.getItem('urls')
+        if(data) {
             this.setState({
-                urls: urls.data.entriesData
-            });
-      
+            urls: JSON.parse(data)
+            })
+        }
+    }
+    componentWillUnmount() {
+        localStorage.clear()
     }
 
   render() {
@@ -72,7 +98,7 @@ class UrlShortener extends Component {
                       type="text"
                       placeholder="Shorten a link here..."
                       className={"w-100 py-3 border-0 rounded " + 
-                      (this.state.noLink && urlStyles.input || this.state.dualNames && urlStyles.input  )
+                      (this.state.noLink && urlStyles.input || this.state.dualNames && urlStyles.input  || this.state.invalidLink && urlStyles.input )
                   }     
                   />
                   {this.state.noLink && <div 
@@ -84,14 +110,21 @@ class UrlShortener extends Component {
                     className="invalid-feedback d-block">
                        Url already exists
                     </div>}
+
+                    {this.state.invalidLink && <div 
+                    className="invalid-feedback d-block">
+                       Url is invalid
+                    </div>}
                   
                 </div>
                 <div className="col-md-4">
                   <button 
                       type="submit" 
-                      className={"w-100 " + buttonStyles.large}
+                      className={"w-100 " + buttonStyles.large }
                   >
-                      Shorten It!
+                     {this.state.submittingLink ? 
+                        <div className="spinner-border" role="status"></div>
+                      : 'Shorten It!'} 
                   </button>
                 </div>
             </div>

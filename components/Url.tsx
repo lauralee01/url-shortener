@@ -3,7 +3,7 @@ import urlStyles from '../styles/Url.module.scss';
 import buttonStyles from '../styles/Buttons.module.scss'; 
 
 interface Props {
-    urls: Array<{ originalLink: string, shortenedLink: string }>;
+    urls: Array<{ originalUrl: string, shortenedUrl: string }>;
 }
 
 class Url extends Component<Props, any> {
@@ -24,15 +24,15 @@ class Url extends Component<Props, any> {
         const { urls } = this.props;
         return (
             <div className={urlStyles.container}>
-              {urls && urls.map((entry, i) => (
+              {urls && urls.map((url, i) => (
                 <div key={i} className={"col-md-12 mb-3 " + urlStyles.wrapper}>
-                    <p className="m-0">{entry.originalLink}</p>
+                    <p className="m-0">{url.originalUrl}</p>
                     <div className={'row align-items-center justify-content-between ' + urlStyles.block}>
-                        <p className={"my-0 col-md-6 " + urlStyles.shortLink}>{entry.shortenedLink}</p>
+                        <p className={"my-0 col-md-6 " + urlStyles.shortLink}>{url.shortenedUrl}</p>
                         <button 
                             type="submit" 
                             className={'col-md-6 ' + this.state.copyLink && this.state.selectedLink === i ? buttonStyles.dark :buttonStyles.small }
-                            onClick={() => this.copyText(entry.shortenedLink, i)}
+                            onClick={() => this.copyText(url.shortenedUrl, i)}
                         >
                             {this.state.copyLink && this.state.selectedLink === i ? 'Copied!' :'Copy'}
                         </button>
